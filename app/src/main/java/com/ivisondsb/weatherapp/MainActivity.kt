@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,6 +13,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.ivisondsb.weatherapp.ui.theme.WeatherAppTheme
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -67,13 +72,47 @@ fun WeatherApp(modifier: Modifier = Modifier) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column() {
+            Column {
                 Text("Weather App", fontSize = 30.sp, fontWeight = FontWeight.SemiBold)
                 Text(currentDate, fontSize = 12.sp, color = Color.Gray)
             }
             Text("⛅", fontSize = 40.sp)
         }
         Spacer(Modifier.height(10.dp))
+    }
+}
+
+
+@Composable
+fun CityCard(city: String, condition: String, temp: Int, maxTemp: Int, minTemp: Int) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(110.dp)
+            .clickable { },
+        shape = RoundedCornerShape(18.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column {
+                Text(city, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+                Text(condition, fontSize = 11.sp, color = Color.Gray)
+                Text("Máx: ${maxTemp}°  Mín: ${minTemp}°", fontSize = 11.sp)
+            }
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                AsyncImage(
+                    model = "https://openweathermap.org/img/wn/03d@2x.png",
+                    contentDescription = "Nublado",
+                    modifier = Modifier.size(40.dp)
+                )
+            }
+            Text("${temp}°", fontSize = 42.sp, fontWeight = FontWeight.Light)
+        }
     }
 }
 
@@ -85,4 +124,10 @@ fun WeatherAppPreview() {
             WeatherApp(modifier = Modifier.padding(innerPadding))
         }
     }
+}
+
+@Preview
+@Composable
+private fun CityCardPreview() {
+    CityCard(city = "Recife", "Nublado", 25, 27, 23)
 }
