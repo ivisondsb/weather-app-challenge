@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
@@ -65,7 +66,6 @@ fun WeatherApp(modifier: Modifier = Modifier) {
             .fillMaxSize()
             .padding(10.dp)
     ) {
-
         Row(
             Modifier
                 .fillMaxWidth(),
@@ -79,6 +79,17 @@ fun WeatherApp(modifier: Modifier = Modifier) {
             Text("⛅", fontSize = 40.sp)
         }
         Spacer(Modifier.height(10.dp))
+        LazyColumn(
+            Modifier
+                .weight(1f)
+                .fillMaxWidth()
+                .padding(10.dp),
+            verticalArrangement = Arrangement.spacedBy(14.dp)
+        ) {
+            items(1) {
+                CityCard(city = "Recife", "Nublado", 25, 27, 23)
+            }
+        }
     }
 }
 
