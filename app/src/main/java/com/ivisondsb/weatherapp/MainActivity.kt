@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -134,7 +135,7 @@ fun CityCard(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column {
+            Column (Modifier.weight(1f)) {
                 Text(city, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
                 Text(condition, fontSize = 11.sp, color = Color.Gray)
                 Text("Máx: ${tempMax}°  Mín: ${tempMin}°", fontSize = 11.sp)
@@ -146,6 +147,7 @@ fun CityCard(
                     modifier = Modifier.size(40.dp)
                 )
             }
+            Spacer(Modifier.width(8.dp))
             Text("${temp}°", fontSize = 42.sp, fontWeight = FontWeight.Light)
         }
     }
