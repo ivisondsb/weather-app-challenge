@@ -101,8 +101,8 @@ fun WeatherApp(modifier: Modifier = Modifier) {
                     city = weather.name,
                     condition = weather.weather[0].description,
                     temp = weather.main.temp.toInt(),
-                    temp_max = weather.main.temp_max.toInt(),
-                    temp_min = weather.main.temp_min.toInt(),
+                    tempMax = weather.main.tempMax.toInt(),
+                    tempMin = weather.main.tempMin.toInt(),
                     icon = weather.weather[0].icon
                 )
             }
@@ -116,8 +116,8 @@ fun CityCard(
     city: String,
     condition: String,
     temp: Int,
-    temp_max: Int,
-    temp_min: Int,
+    tempMax: Int,
+    tempMin: Int,
     icon: String
 ) {
     Card(
@@ -137,7 +137,7 @@ fun CityCard(
             Column {
                 Text(city, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
                 Text(condition, fontSize = 11.sp, color = Color.Gray)
-                Text("Máx: ${temp_max}°  Mín: ${temp_min}°", fontSize = 11.sp)
+                Text("Máx: ${tempMax}°  Mín: ${tempMin}°", fontSize = 11.sp)
             }
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 AsyncImage(

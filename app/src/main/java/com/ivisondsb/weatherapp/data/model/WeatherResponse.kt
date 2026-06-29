@@ -1,5 +1,7 @@
 package com.ivisondsb.weatherapp.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class WeatherResponse(
     val name: String,
     val main: Main,
@@ -8,8 +10,10 @@ data class WeatherResponse(
 
 data class Main(
     val temp: Double,
-    val temp_min: Double,
-    val temp_max: Double
+    @SerializedName("temp_min")
+    val tempMin: Double,
+    @SerializedName("temp_max")
+    val tempMax: Double
 )
 
 data class Weather(
